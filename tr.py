@@ -16,7 +16,7 @@ def readDacObsParam(dac, param, ts):
         nodes = []
         columns = range(0, doc.getNumberOfValidObsPoints())
         for j in range(0, doc.getNumberOfValidObsPoints()): nodes.append(doc.getTypeOfObsId(j))
-        columns = ["{}{}{}".format('Obs. ',i, ' at ') for i in columns]
+        columns = ["{}{}{}".format('Obs. ',i, ' at n') for i in columns]
         for j in range(0, len(columns)): columns[j] = columns[j]+str(nodes[j])
         #for j in range(0, len(columns)): obs_name.append(doc.getObsLabel(0)) #Available only in 7.2
     if param == 'heads':
