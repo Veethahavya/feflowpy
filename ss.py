@@ -81,7 +81,7 @@ def setParamAtBC(fem_path, bc_type, param, value):
 
 #%% Transfers specific data for between two models
 def transferAll(fem_path_in, fem_path_out, param):
-    supported_params = param == 'conductivity2D' or param == 'conductivity3D' or param == 'heads' or param == 'BC' or param == 'bc' or param == 'porosity' or param == 'recharge' or param == 'transferIN' or param == 'transferOUT'
+    supported_params = param in ['conductivity2D', 'conductivity3D', 'heads', 'BC', 'bc', 'porosity', 'recharge', 'transferIN', 'transferOUT']
     if not supported_params:
         print 'Unsupported param type or incompatible param type and model. Retry.'
         sys.exit(1)
@@ -265,7 +265,7 @@ def transferAll(fem_path_in, fem_path_out, param):
 
 #%% Transfers specific data between two models for a given node/element (based on param) selection
 def transferSelection(fem_path_in, fem_path_out, param,  xml_path):
-    supported_params = param == 'conductivity2D' or param == 'conductivity3D' or param == 'heads' or  param == 'BC' or param == 'bc' or param == 'porosity' or param == 'recharge' or param == 'transferIN' or param == 'transferOUT'
+    supported_params = param in ['conductivity2D', 'conductivity3D', 'heads', 'BC', 'bc', 'porosity', 'recharge', 'transferIN', 'transferOUT']
     if not supported_params:
         print 'Unsupported param type. Retry.'
         sys.exit(1)
@@ -524,7 +524,7 @@ def transferSelection(fem_path_in, fem_path_out, param,  xml_path):
         return elements, transferOUT_in, param_df
 #%% Transfers specific data between two models for a specified layer or slice
 def transferLayerSlice(fem_path_in, fem_path_out, param, layer, internalRun=False):
-    supported_params = param == 'conductivity3D' or param == 'heads' or param == 'BC' or param == 'bc' or param == 'porosity' or param == 'recharge' or param == 'transferIN' or param == 'transferOUT'
+    supported_params = param in ['conductivity3D', 'heads', 'BC', 'bc', 'porosity', 'recharge', 'transferIN', 'transferOUT']
     if not supported_params:
         print 'Unsupported param type. Retry.'
         sys.exit(1)
