@@ -1,3 +1,5 @@
+"""This class contains functions for transient use cases
+"""
 import sys
 sys.path.append('C:\\Program Files\\DHI\\2017\\FEFLOW 7.1\\bin64')
 import ifm
@@ -7,6 +9,8 @@ import pandas as pd
 
 #%% Read the specified param at the Obs. pts. from a DAC file over specified time steps into a DF
 def readDacObsParam(dac, param, ts):
+    """Read the specified param at the Obs. pts. from a DAC file over specified time steps into a DF
+    """
     doc = ifm.loadDocument(dac)
     supported_params = param=='heads' or param=='temperature' or param=='mass' or param=='moisture' or param=='pressure' or param=='saturation'
     if not supported_params:

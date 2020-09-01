@@ -1,3 +1,5 @@
+"""This class contains functions for steady-state use cases
+"""
 import sys
 sys.path.append('C:\\Program Files\\DHI\\2017\\FEFLOW 7.1\\bin64')
 import ifm
@@ -9,6 +11,7 @@ import pandas as pd
 
 #%% Fetches and returns the Element IDs for a given xml selection
 def ElementsInSelection(xml_path):
+    """Internal Use: Fetches and returns the Element IDs for a given xml selection"""
     xml_file = minidom.parse(xml_path)
     ranges = xml_file.getElementsByTagName('range')
     starts = []
@@ -34,6 +37,7 @@ def ElementsInSelection(xml_path):
 
 #%% Fetches and returns the Node IDs for a given xml selection
 def NodesInSelection(xml_path):
+    """Internal Use: Fetches and returns the Node IDs for a given xml selection"""
     xml_file = minidom.parse(xml_path)
     ranges = xml_file.getElementsByTagName('range')
     starts = []
@@ -59,6 +63,8 @@ def NodesInSelection(xml_path):
 
 #%% Fetches the list of nodes for a specified boundary condition; returns a DF of the locations (nodes/elements) and the value
 def setParamAtBC(fem_path, bc_type, param, value):
+    """Fetches the list of nodes for a specified boundary condition; returns a DF of the locations (nodes/elements) and the value
+    """
     doc = ifm.loadDocument(fem_path)
     nn = doc.getNumberOfNodes()
     nodes_list = []
@@ -81,6 +87,8 @@ def setParamAtBC(fem_path, bc_type, param, value):
 
 #%% Transfers specific data for between two models
 def transferAll(fem_path_in, fem_path_out, param):
+    """Transfers specific data for between two models
+    """
     supported_params = param in ['conductivity2D', 'conductivity3D', 'heads', 'BC', 'bc', 'porosity', 'recharge', 'transferIN', 'transferOUT']
     if not supported_params:
         print 'Unsupported param type or incompatible param type and model. Retry.'
@@ -265,6 +273,8 @@ def transferAll(fem_path_in, fem_path_out, param):
 
 #%% Transfers specific data between two models for a given node/element (based on param) selection
 def transferSelection(fem_path_in, fem_path_out, param,  xml_path):
+    """Transfers specific data between two models for a given node/element (based on param) selection
+    """
     supported_params = param in ['conductivity2D', 'conductivity3D', 'heads', 'BC', 'bc', 'porosity', 'recharge', 'transferIN', 'transferOUT']
     if not supported_params:
         print 'Unsupported param type. Retry.'
@@ -524,6 +534,8 @@ def transferSelection(fem_path_in, fem_path_out, param,  xml_path):
         return elements, transferOUT_in, param_df
 #%% Transfers specific data between two models for a specified layer or slice
 def transferLayerSlice(fem_path_in, fem_path_out, param, layer, internalRun=False):
+    """Transfers specific data between two models for a specified layer or slice
+    """
     supported_params = param in ['conductivity3D', 'heads', 'BC', 'bc', 'porosity', 'recharge', 'transferIN', 'transferOUT']
     if not supported_params:
         print 'Unsupported param type. Retry.'
